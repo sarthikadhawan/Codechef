@@ -9,7 +9,7 @@
 #include<string.h>
 #define HISTORY_COUNT 1000
 
-
+// Add function descriptions
  int currentmain=0;
 
 void sigintHandler(int sig_num)
