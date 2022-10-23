@@ -9,16 +9,11 @@
 #include<string.h>
 #define HISTORY_COUNT 1000
 
-
- int currentmain=0;
+int currentmain=0;
 
 void sigintHandler(int sig_num)
 {
-   
     fflush(stdout);
-    
-    
-
 }
 
 int history(char *hist[], int current)
@@ -31,15 +26,10 @@ int history(char *hist[], int current)
                         printf("%4d  %s\n", hist_num, hist[i]);
                         hist_num++;
                 }
-
                 i = i + 1;
-
         } 
-
         return 0;
 }
-
-
 
 int killl(int j,char *str1[100])
 {
@@ -50,19 +40,17 @@ int killl(int j,char *str1[100])
     }
 
     kill(atoi(str1[1]), SIGKILL);
-
     return 0;
 }
 
 
 int main()
 {
+    signal(SIGINT, sigintHandler);
 
-signal(SIGINT, sigintHandler);
-
-pid_t pid1,pid2;
-char *hist[101];
-int current=0,cc=0,kk=0;
+    pid_t pid1,pid2;
+    char *hist[101];
+    int current=0,cc=0,kk=0;
 
 
     //execl("/usr/bin/xterm", "xterm", "-c","./a.out", NULL);
@@ -79,7 +67,7 @@ int current=0,cc=0,kk=0;
     //puts(s);
     if(strcmp(s,"exit")==0||strcmp(s,"Exit")==0)
         exit(1);
-     if(strcmp(s,"cd")==0||strcmp(s,"cd ")==0)
+    if(strcmp(s,"cd")==0||strcmp(s,"cd ")==0)
         kk=1;
     if(strcmp(s,"clear")==0)
            printf  ("\033c");  
@@ -104,7 +92,7 @@ int current=0,cc=0,kk=0;
 
     while(token!=NULL)
     {
-       // printf("%d %d",strlen(token),strlen(s));
+        // printf("%d %d",strlen(token),strlen(s));
         str1[i]=token;
         if(i==0)
             strcpy(str,token); 
@@ -121,14 +109,12 @@ int current=0,cc=0,kk=0;
 
     if(strcmp(str,"cd")==0)
         strcat(ss,str1[1]);
-   if(strcmp(str,"kill")==0)
+    if(strcmp(str,"kill")==0)
 	killl(j,str1);
    
-	
-
     strcpy(fin, main);
     strcat(fin, str);
-//puts(fin);
+    //puts(fin);
     for(i=0; i<strlen(fin); i++)
         {
             if(fin[i]=='\n')
@@ -139,10 +125,10 @@ int current=0,cc=0,kk=0;
 
         
        if (s[strlen(s) - 1] == '\n')
-                        s[strlen(s) - 1] = '\0';
+           	s[strlen(s) - 1] = '\0';
     		
-		if(s[0]!='\0')
-{
+	if(s[0]!='\0')
+	{
    		hist[current] = strdup(s);
 		cc=current;
 		currentmain=current;
@@ -153,7 +139,7 @@ int current=0,cc=0,kk=0;
 		if(current==100)
 			current=0;
                 
-}    
+	}    
 
 
 	
@@ -193,7 +179,7 @@ int current=0,cc=0,kk=0;
 
             }
         
-exit(0);
+	exit(0);
     }
     else
         {
@@ -201,12 +187,7 @@ exit(0);
                 {
                     chdir(str1[1]);
                 }
-
-
-           
-          
-		 
-          wait(NULL);
+          	wait(NULL);
 
         }
 }
