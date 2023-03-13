@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+// this is compare function
 int compare(const void *a,const void *b)
 {
  
